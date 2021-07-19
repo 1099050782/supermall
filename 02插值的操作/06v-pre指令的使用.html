@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{message}}</h2>
+<!--  用于跳过这个元素和它子元素的编译过程，用于显示原本的Mustache语法-->
+<!--  第一个h2元素中的内容会被编译解析出对应的内容-->
+<!--  第二个h2元素中会直接显示{{message}}-->
+  <h2 v-pre>{{message}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '哈喽'
+    }
+  })
+</script>
+</script>
+</body>
+</html>
