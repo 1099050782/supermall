@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<!--  这里不能使用mustacha语法  需要使用v-bind指令-->
+  <img v-bind:src="imgURL" >
+  <a v-bind:href="aHref">百度一下</a>
+
+<!--  语法糖写法-->
+  <img :src="imgURL" >
+  <a :href="aHref">百度一下</a>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '哈喽',
+      imgURL:'../images/pig.jpg',
+      aHref: 'http://www.baidu.com',
+    }
+  })
+</script>
+
+</body>
+</html>
