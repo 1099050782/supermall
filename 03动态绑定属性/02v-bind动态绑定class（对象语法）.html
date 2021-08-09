@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>v-bind动态绑定class(对象语法)</title>
   <style>
+    /*:active向活动的链接添加特殊的样式,当你点击一个链接时它变成活动链接。*/
     .active {
       color: #E95659;
     }
@@ -14,7 +15,7 @@
 <div id="app">
 <!--  <h2 v-bind:class="{类名1: true, 类名2: boolean}">{{message}}</h2>-->
 <!--  方法一：-->
-  <h2 class="title" v-bind:class="{active: isActive, line: isLine}">{{message}}</h2>
+ <h2 class="title" v-bind:class="{active: isActive, line: isLine}">{{message}}</h2>
 <!--  方法二： classes 是一个计算属性-->
 <!--  <h2 class="title" v-bind:class="getClasses()">{{message}}</h2>-->
   <button v-on:click="btnClick">按钮</button>
@@ -33,9 +34,9 @@
       btnClick: function () {
         this.isActive = !this.isActive
       },
-      /*getClasses: function () {
-        return {active: this.isActive, line: this.isLine}
-      }*/
+      // getClasses: function () {
+      //   return {active: this.isActive, line: this.isLine}
+      // }
     }
   })
 </script>
