@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<!--  事件调用方法没有参数-->
+  <button @click="btn1Click">按钮1</button>
+  <button @click="btn1Click">按钮2</button>
+<!--  在事件定义是时，写方法时省略了小括号，但是放大本身需要一个参数，vue会默认将浏览器生产的event事件对象作为参数传入到方法中-->
+  <button @click="btn2Click">按钮2</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '(｡･∀･)ﾉﾞ嗨',
+      },
+    methods: {
+      btn1Click() {
+        console.log("btn1Click");
+      },
+      btn2Click() {
+        console.log('---', event);
+      }
+    }
+  })
+</script>
+</body>
+</html>
