@@ -7,11 +7,19 @@
 <body>
 
 <div id="app">
-<!--  事件调用方法没有参数-->
+  <!--  1.事件调用方法没有参数-->
   <button @click="btn1Click">按钮1</button>
   <button @click="btn1Click">按钮2</button>
-<!--  在事件定义是时，写方法时省略了小括号，但是放大本身需要一个参数，vue会默认将浏览器生产的event事件对象作为参数传入到方法中-->
+
+  <!--  2.在事件定义是时，写方法时省略了小括号，但是放大本身需要一个参数，vue会默认将浏览器生产的event事件对象作为参数传入到方法中-->
+  <!--  一：-->
+  <!--  <button @click="btn2Click(123)">按钮2</button>-->
+  <!--  二： -->
   <button @click="btn2Click">按钮2</button>
+
+  <!--  3.方法定义时，需要event对象，同时又需要其他参数-->
+  <button @click="btn3Click(abc, $event)">按钮3</button>
+  
 </div>
 <script src="../js/vue.js"></script>
 <script>
@@ -19,13 +27,22 @@
     el: '#app',
     data: {
       message: '(｡･∀･)ﾉﾞ嗨',
+      abc: 123,
       },
     methods: {
       btn1Click() {
         console.log("btn1Click");
       },
+      // //一：
+      // btn2Click(abc) {
+      //   console.log('---', abc);
+      // },
+      //  二：
       btn2Click() {
-        console.log('---', event);
+         console.log('---', event);
+      },
+      btn3Click(abc, event) {
+        console.log('---', abc, event);
       }
     }
   })
