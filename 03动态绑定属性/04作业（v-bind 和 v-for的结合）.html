@@ -12,10 +12,15 @@
 <body>
 
 <!--点击列表中的哪一项，该项的文字变成红色-->
+<!--方法一： -->
 <div id="app">
   <ul>
-<!--    v-for获取movies里的数据（film数组元素迭代的别名）  v-on绑定自定义事件,index传给activeIndex   v-bind activeIndex与index相等，显示了一个紫色的 div 块-->
-    <li v-for="(film, index) in movies" v-on:click="activeIndex=index" v-bind:class="{'active':activeIndex==index}">{{index}}-{{film}}</li>
+<!-- v-for获取movies里的数据（film数组元素迭代的别名）  v-on绑定自定义事件,index传给activeIndex   v-bind activeIndex与index相等，显示了一个紫色的 div 块&ndash;&gt;-->
+    <li v-for="(film, index) in movies"
+        v-on:click="activeIndex=index"
+        v-bind:class="{'active':activeIndex == index}">
+      {{index}}-{{film}}
+     </li>
 
   </ul>
 </div>
@@ -25,10 +30,36 @@
     el: '#app',
     data: {
       movies: ['这个杀手不太冷', '盗梦空间', '肖申克的救赎', '泰坦尼克号'],
-      activeIndex:0
+      activeIndex: 0  // 用来显示谁显示紫色
     },
   })
 </script>
 
+<!--方法二： -->
+<div id="app">
+<ul>
+  <li v-for="(film, index) in movies"
+      v-bind:class="{active: activeIndex == index}"
+      v-on:click="liClick(index)">
+    {{index}}.{{film}}
+  </li>
+</ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      movies: ['这个杀手不太冷', '盗梦空间', '肖申克的救赎', '泰坦尼克号'],
+      activeIndex: 0  // 用来显示谁显示紫色
+    },
+    methods: {
+      liClick(index) {
+        this.activeIndex = index;
+      }
+    }
+  })
+</script>
 </body>
 </html>
