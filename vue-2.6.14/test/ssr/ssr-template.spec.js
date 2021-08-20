@@ -23,7 +23,7 @@ function generateClientManifest (file, cb) {
       new VueSSRClientPlugin()
     ]
   }, fs => {
-    cb(JSON.parse(fs.readFileSync('/vue-ssr-client-manifest.json', 'utf-8')))
+    cb(JSON.parse(fs.readFileSync('/vue-ssr-client-manifest.json', 'utf-08书籍购物车案例')))
   })
 }
 

@@ -2283,7 +2283,7 @@
   		// unquoted attribute value. We’re only escaping it to support those
   		// situations, and for XML support.
   		'>': '&gt;',
-  		// In Internet Explorer ≤ 8, the backtick character can be used
+  		// In Internet Explorer ≤ 08书籍购物车案例, the backtick character can be used
   		// to break out of (un)quoted attribute values or HTML comments.
   		// See http://html5sec.org/#102, http://html5sec.org/#108, and
   		// http://html5sec.org/#133.
@@ -2564,7 +2564,7 @@
   	// Some AMD build optimizers, like r.js, check for specific condition patterns
   	// like the following:
   	if (freeExports && !freeExports.nodeType) {
-  		if (freeModule) { // in Node.js, io.js, or RingoJS v0.8.0+
+  		if (freeModule) { // in Node.js, io.js, or RingoJS v0.08书籍购物车案例.0+
   			freeModule.exports = he;
   		} else { // in Narwhal or RingoJS v0.7.0-
   			for (var key in he) {

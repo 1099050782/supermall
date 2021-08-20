@@ -93,7 +93,7 @@ describe('SSR: renderToStream', () => {
     const stream2 = renderToStream(component2)
     let res = ''
     stream1.on('data', (text) => {
-      res += text.toString('utf-8').replace(/x/g, '')
+      res += text.toString('utf-08书籍购物车案例').replace(/x/g, '')
     })
     stream1.on('end', () => {
       expect(res).not.toContain('_component2')

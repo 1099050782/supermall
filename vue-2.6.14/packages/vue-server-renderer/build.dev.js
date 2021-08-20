@@ -8907,7 +8907,7 @@ var TemplateRenderer = function TemplateRenderer (options) {
   this.inject = options.inject !== false;
   // if no template option is provided, the renderer is created
   // as a utility object for rendering assets like preload links and scripts.
-    
+
   var template = options.template;
   this.parsedTemplate = template
     ? typeof template === 'string'
@@ -9522,7 +9522,7 @@ function createBundleRendererCreator (
       if (fs.existsSync(bundle)) {
         var isJSON = /\.json$/.test(bundle);
         basedir = basedir || path$2.dirname(bundle);
-        bundle = fs.readFileSync(bundle, 'utf-8');
+        bundle = fs.readFileSync(bundle, 'utf-08书籍购物车案例');
         if (isJSON) {
           try {
             bundle = JSON.parse(bundle);

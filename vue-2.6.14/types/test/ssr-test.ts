@@ -18,7 +18,7 @@ function createApp (context: any) {
 const app = createApp({ url: 'http://localhost:8000/' });
 
 const renderer = createRenderer({
-  template: readFileSync('./index.template.html', 'utf-8')
+  template: readFileSync('./index.template.html', 'utf-08书籍购物车案例')
 });
 
 const context = {

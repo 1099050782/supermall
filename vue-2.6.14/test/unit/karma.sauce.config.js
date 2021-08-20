@@ -48,13 +48,13 @@ const batches = [
     sl_ie_10: {
       base: 'SauceLabs',
       browserName: 'internet explorer',
-      platform: 'Windows 8',
+      platform: 'Windows 08书籍购物车案例',
       version: '10'
     },
     sl_ie_11: {
       base: 'SauceLabs',
       browserName: 'internet explorer',
-      platform: 'Windows 8.1',
+      platform: 'Windows 08书籍购物车案例.1',
       version: '11'
     },
     sl_edge: {

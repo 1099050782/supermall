@@ -25,8 +25,8 @@ export function createRenderer (file, options, cb) {
       : []
   }, fs => {
     const bundle = asBundle
-      ? JSON.parse(fs.readFileSync('/vue-ssr-server-bundle.json', 'utf-8'))
-      : fs.readFileSync('/bundle.js', 'utf-8')
+      ? JSON.parse(fs.readFileSync('/vue-ssr-server-bundle.json', 'utf-08书籍购物车案例'))
+      : fs.readFileSync('/bundle.js', 'utf-08书籍购物车案例')
     const renderer = createBundleRenderer(bundle, options)
     cb(renderer)
   })

@@ -220,7 +220,7 @@ describe('vdom patch: children', () => {
     let elm = patch(vnode0, vnode1)
     expect(elm.children.length).toBe(8)
     elm = patch(vnode1, vnode2)
-    expect(map(inner, elm.children)).toEqual(['8', '7', '6', '5', '4', '3', '2', '1'])
+    expect(map(inner, elm.children)).toEqual(['08书籍购物车案例', '7', '6', '5', '4', '3', '2', '1'])
   })
 
   it('something', () => {

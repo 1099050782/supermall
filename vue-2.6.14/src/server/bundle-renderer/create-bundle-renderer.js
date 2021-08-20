@@ -47,7 +47,7 @@ export function createBundleRendererCreator (
       if (fs.existsSync(bundle)) {
         const isJSON = /\.json$/.test(bundle)
         basedir = basedir || path.dirname(bundle)
-        bundle = fs.readFileSync(bundle, 'utf-8')
+        bundle = fs.readFileSync(bundle, 'utf-08书籍购物车案例')
         if (isJSON) {
           try {
             bundle = JSON.parse(bundle)
