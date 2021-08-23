@@ -50,36 +50,39 @@ const app = new Vue({
   },
   computed: {
     totalPrice() {
-      // //1.方法一:(普通的for循环)
-      // let totalPrice = 0;
-      //     for (let i = 0; i < this.books.length; i++) {
-      //       totalPrice += this.books[i].price * this.books[i].count;
-      //     }
-      //     return totalPrice;
+      /*// 1.方法一:(普通的for循环)
+       let totalPrice = 0;
+           for (let i = 0; i < this.books.length; i++) {
+             totalPrice += this.books[i].price * this.books[i].count;
+           }
+           return totalPrice;*/
 
-    // //  2.方法二: for (let i in this.books)
-    //   let totalPrice = 0;
-    //   for (let i in this.books) {
-    //     const book = this.books[i];
-    //     totalPrice += book.price * book.count;
-    //   }
-    //   return totalPrice;
+     /*//  2.方法二: for (let i in this.books)
+       let totalPrice = 0;
+       for (let i in this.books) {
+         const book = this.books[i];
+         totalPrice += book.price * book.count;
+       }
+       return totalPrice;*/
 
-    // //  3. 方法三: for (let i of this.books)
-    //   let totalPrice = 0;
-    //      for (let item of this.books) {
-    //        totalPrice += item.price * item.count;
-    //      }
-    //      return totalPrice;
+    /*//  3. 方法三: for (let i of this.books)
+       let totalPrice = 0;
+          for (let item of this.books) {
+            totalPrice += item.price * item.count;
+          }
+          return totalPrice;*/
 
     //  4. 方法四: reduce
+      return this.books.reduce(function (preValue, book) {
+        return preValue + book.price * book.count;
+      }, 0)
     }
   },
-  //方法三:
+  //方法三 (过滤器):
   filters: {
     showPrice(price) {
       return '￥' + price.toFixed(2);
     }
   },
-
 })
+
