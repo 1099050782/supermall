@@ -7,21 +7,21 @@
 <body>
 
 <div id="app">
-<!--  1. .shop修饰符的使用 -->
+<!--  1. .stop修饰符的使用 阻止冒泡-->
   <div @click="divClick">
     aaa
     <button @click.stop="btnClick">按钮</button>
   </div>
-<!--  2. .prevent修饰符的使用 -->
+<!--  2. .prevent修饰符的使用 阻止默认事件-->
     <br>
     <form action="baidu">
       <input type="submit" value="提交" @click.prevent="submitClick">
     </form>
 
-<!--  3. .监听某个键盘的键帽 -->
+<!--  3. .监听某个键盘的键帽  .enter .tab .delete .esc等 -->
   <input type="text" @keyup.enter="keyUp">
 
-<!--  4. .once修饰符的使用-->
+<!--  4. .once修饰符的使用 只触发一次-->
   <button @click.once="btn2Click">按钮1</button>
 </div>
 
