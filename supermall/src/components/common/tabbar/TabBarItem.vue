@@ -24,7 +24,7 @@ export default {
   computed: {
     isActive() {
       //找到了等于 -1
-      return this.$router.path.indexOf(this.path) !== -1;
+      return this.$route .path.indexOf(this.path) !== -1;
     },
     activeStyle() {
       return this.isActive ? {color: this.activeColor} : {}
