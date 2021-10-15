@@ -1,35 +1,17 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-    <home-swiper :banners="banners"/>
-    <recommend-view :recommends="recommends"/>
-    <feature-view/>
-    <tab-control class="tab-control"
-                 :titles="['流行', '新款', '精选']"
-                 @tabClick="tabClick"/>
-    <goods-list :goods="showGoods"/>
 
+    <scroll class="content">
+      <home-swiper :banners="banners"/>
+      <recommend-view :recommends="recommends"/>
+      <feature-view/>
+      <tab-control class="tab-control"
+                   :titles="['流行', '新款', '精选']"
+                   @tabClick="tabClick"/>
+      <goods-list :goods="showGoods"/>
+    </scroll>
 
-    <ul>1</ul>
-    <ul>2</ul>
-    <ul>3</ul>
-    <ul>4</ul>
-    <ul>5</ul>
-    <ul>6</ul>
-    <ul>7</ul>
-    <ul>8</ul>
-    <ul>9</ul>
-    <ul>10</ul>
-    <ul>11</ul>
-    <ul>12</ul>
-    <ul>13</ul>
-    <ul>14</ul>
-    <ul>15</ul>
-    <ul>16</ul>
-    <ul>17</ul>
-    <ul>18</ul>
-    <ul>19</ul>
-    <ul>20</ul>
   </div>
 </template>
 
@@ -41,6 +23,7 @@ import FeatureView from "@/views/home/childComps/FeatureView";
 import NavBar from "@/components/common/navbar/NavBar";
 import TabControl from "@/components/content/tabControl/TabControl";
 import GoodsList from "@/components/content/goods/GoodsList";
+import Scroll from "@/components/common/scroll/Scroll";
 
 import {getHomeMultidata, getHomeGoods} from "@/network/home";
 
@@ -52,7 +35,8 @@ export default {
     FeatureView,
     NavBar,
     TabControl,
-    GoodsList
+    GoodsList,
+    Scroll
   },
   data() {
     return {
@@ -115,7 +99,8 @@ export default {
 <style scoped>
 #home {
   padding-top: 44px;
-  background-color:#ffffff;
+  height: 100vh;
+  position: relative;
 }
 .home-nav {
   background-color: var(--color-tint);
@@ -131,5 +116,14 @@ export default {
   position: sticky;
   top: 44px;
   z-index: 9;
+}
+.content {
+  /*内容溢出一个元素的框,内容会被修剪，并且其余内容是不可见的*/
+  overflow: hidden;
+  position: absolute;
+  top: 44px;
+  bottom: 49px;
+  left: 0;
+  right: 0;
 }
 </style>

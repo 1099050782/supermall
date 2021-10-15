@@ -515,12 +515,12 @@ export default {
       scroll: null
     }
   },
-  created() {
-    //组件创建先后调用
-  },
   mounted() {
     this.scroll = new BScroll(document.querySelector('.wrapper'), {
-
+      //滚动都侦测
+      probeType: 3,
+      //上拉加载更过
+      pullUpLoad: true
     })
   }
 }
@@ -530,5 +530,6 @@ export default {
 .wrapper {
   height: 200px;
   background-color: red;
+  overflow: hidden;
 }
 </style>
