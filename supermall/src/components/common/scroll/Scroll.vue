@@ -16,10 +16,10 @@ export default {
       type: Number,
       default: 0
     },
-    pullUpLoad: {
-      type: Boolean,
-      default: false
-    }
+  },
+  pullUpLoad: {
+    type: Boolean,
+    default: false
   },
   data() {
     return {
@@ -34,22 +34,31 @@ export default {
       pullUpLoad: this.pullUpLoad
     })
     //2.监听滚动的位置
-    this.scroll.on('scroll', (position) => {
-      this.$emit('scroll', position)
-    })
-    //3.监听上拉事件
-    this.scroll.on('pullingUp', () => {
-      this.$emit('pullingUp')
-    })
+    if (this.probeType === 2 || this.probeType === 3) {
+      this.scroll.on('scroll', (position) => {
+        this.$emit('scroll', position)
+      })
+    }
+
+    // //3.监听上拉事件
+    if (this.pullUpLoad) {
+      this.scroll.on('pullingUp', () => {
+        this.$emit('pullingUp')
+      })
+    }
   },
   methods: {
     //点击返回顶部
     scrollTo(x, y, time=300) {
-      this.scroll.scrollTo(x, y, time)
+      this.scroll && this.scroll.scrollTo(x, y, time)
     },
     finishPullUp() {
-      this.scroll.finishPullUp()
-    }
+      this.scroll && this.scroll.finishPullUp()
+    },
+    refresh() {
+      this.scroll && this.scroll.refresh()
+    },
+
   }
 }
 </script>
