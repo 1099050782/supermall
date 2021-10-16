@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="wrapper">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
 
     <scroll class="content"
@@ -16,7 +16,6 @@
                    @tabClick="tabClick"/>
       <goods-list :goods="showGoods"/>
     </scroll>
-
 <!--    .native 监听组件根元素的原生事件-->
     <back-top @click.native="backClick" v-show="isShowBackTop"/>
 
