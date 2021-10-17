@@ -8,12 +8,12 @@
             @scroll="contentScroll"
             :pull-up-load="true"
             @pullingUp="loadMore">
-      <home-swiper :banners="banners"/>
+      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/>
       <recommend-view :recommends="recommends"/>
       <feature-view/>
-      <tab-control class="tab-control"
-                   :titles="['流行', '新款', '精选']"
-                   @tabClick="tabClick"/>
+      <tab-control :titles="['流行', '新款', '精选']"
+                   @tabClick="tabClick"
+                   ref="tabControl" :class="{fixed: isTabFixed}"/>
       <goods-list :goods="showGoods"/>
     </scroll>
 <!--    .native 监听组件根元素的原生事件-->
@@ -58,7 +58,9 @@ export default {
         'sell': {page: 0, list: []},
       },
       currentType: 'pop',
-      isShowBackTop: false
+      isShowBackTop: false,
+      tabOffsetTop: 0,
+      isTabFixed: false
     }
   },
   computed: {
@@ -78,7 +80,6 @@ export default {
     //  3.监听item中图片加载完成
     //防抖动debounce
     const refresh = debounce(this.$refs.scroll.refresh, 50)
-
     this.$bus.$on('itemImageLoad', () => {
       refresh()
     })
@@ -103,10 +104,16 @@ export default {
       this.$refs.scroll.scrollTo(0, 0)
     },
     contentScroll(position) {
+      //1.判断BackTop是否显示
       this.isShowBackTop = (-position.y) > 1000
+    //  2.决定tabControl是否吸顶
+      this.isTabFixed = (-position.y) > this.tabOffsetTop
     },
     loadMore() {
       this.getHomeGoods(this.currentType)
+    },
+    swiperImageLoad() {
+      this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
     },
     //网络请求相关的方法
     getHomeMultidata() {
@@ -144,12 +151,7 @@ export default {
   /*指定一个元素的堆叠顺序*/
   z-index: 9;
 }
-.tab-control {
-  /*position: sticky:基于用户的滚动位置来定位*/
-  position: sticky;
-  top: 44px;
-  z-index: 9;
-}
+
 .content {
   /*内容溢出一个元素的框,内容会被修剪，并且其余内容是不可见的*/
   overflow: hidden;
@@ -158,5 +160,11 @@ export default {
   bottom: 49px;
   left: 0;
   right: 0;
+}
+.fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 44px;
 }
 </style>
