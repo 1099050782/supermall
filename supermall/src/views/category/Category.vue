@@ -515,14 +515,21 @@ export default {
       scroll: null
     }
   },
+  // 组件创建完后调用
   mounted() {
-    this.scroll = new BScroll(document.querySelector('.wrapper'), {
-      //滚动都侦测
-      probeType: 3,
-      //上拉加载更过
-      pullUpLoad: true
+    this.scroll = new BScroll(this.$refs.a, {
+      // probeType: 3,
+      // pullUpLoad: true
     })
-  }
+
+    this.scroll.on('scroll', (position) => {
+      console.log(position);
+    })
+
+    this.scroll.on('pullingUp', () => {
+      console.log('上啦加载更多');
+    })
+  },
 }
 </script>
 

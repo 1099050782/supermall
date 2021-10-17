@@ -1,7 +1,11 @@
 <template>
   <div id="home" class="wrapper">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-
+    <tab-control :titles="['流行', '新款', '精选']"
+                 @tabClick="tabClick"
+                 ref="tabControl1"
+                 class="tab-control"
+                 v-show="isTabFixed"/>
     <scroll class="content"
             ref="scroll"
             :probe-type="3"
@@ -13,7 +17,7 @@
       <feature-view/>
       <tab-control :titles="['流行', '新款', '精选']"
                    @tabClick="tabClick"
-                   ref="tabControl" :class="{fixed: isTabFixed}"/>
+                   ref="tabControl2" />
       <goods-list :goods="showGoods"/>
     </scroll>
 <!--    .native 监听组件根元素的原生事件-->
@@ -60,13 +64,24 @@ export default {
       currentType: 'pop',
       isShowBackTop: false,
       tabOffsetTop: 0,
-      isTabFixed: false
+      isTabFixed: false,
+      saveY: 0
     }
   },
   computed: {
     showGoods() {
       return this.goods[this.currentType].list
     }
+  },
+  destroyed() {
+    console.log('home destroyed');
+  },
+  activated() {
+    this.$refs.scroll.scrollTo(0, this.saveY, 0)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    this.saveY = this.$refs.scroll.getScrollY()
   },
   created() {
     //1.请求多个数据
@@ -99,6 +114,8 @@ export default {
           this.currentType = 'sell'
           break
       }
+      this.$refs.tabControl1.currentIndex = index;
+      this.$refs.tabControl2.currentIndex = index;
     },
     backClick() {
       this.$refs.scroll.scrollTo(0, 0)
@@ -113,7 +130,7 @@ export default {
       this.getHomeGoods(this.currentType)
     },
     swiperImageLoad() {
-      this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
+      this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
     },
     //网络请求相关的方法
     getHomeMultidata() {
@@ -137,19 +154,19 @@ export default {
 
 <style scoped>
 #home {
-  padding-top: 44px;
+  /*padding-top: 44px;*/
   height: 100vh;
   position: relative;
 }
 .home-nav {
   background-color: var(--color-tint);
   color: #ffffff;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  /*指定一个元素的堆叠顺序*/
-  z-index: 9;
+  /*position: fixed;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*top: 0;*/
+  /*!*指定一个元素的堆叠顺序*!*/
+  /*z-index: 9;*/
 }
 
 .content {
@@ -161,10 +178,8 @@ export default {
   left: 0;
   right: 0;
 }
-.fixed {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 44px;
+.tab-control {
+  position: relative;
+  z-index: 9;
 }
 </style>
