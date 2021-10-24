@@ -23,10 +23,12 @@ import DetailGoodsInfo from "@/views/detail/childComps/DetailGoodsInfo";
 import DetailParamInfo from "@/views/detail/childComps/DetailParamInfo";
 import DetailCommentInfo from "@/views/detail/childComps/DetailCommentInfo";
 
-import Scroll from "@/components/common/scroll/Scroll";
 import GoodsList from "@/components/content/goods/GoodsList";
+import Scroll from "@/components/common/scroll/Scroll";
 
+import {debounce} from "@/common/utils";
 import {getDetail, Goods, Shop, GoodsParam, getRecommend} from "@/network/detail";
+import {itemListenerMixin} from 'common/mixin'
 
 export default {
   name: "Detail",
@@ -38,9 +40,10 @@ export default {
     DetailGoodsInfo,
     DetailParamInfo,
     DetailCommentInfo,
+    GoodsList,
     Scroll,
-    GoodsList
   },
+  mixins: [itemListenerMixin],
   data() {
     return {
       iid: null,
@@ -82,6 +85,10 @@ export default {
   methods: {
     imageLoad() {
       this.$refs.scroll.refresh()
+    },
+    destroyed() {
+      // 离开页面时取消全局事件的监听
+      this.$bus.$off('itemImgLoad',this.itemImgListener)
     }
   }
 }
