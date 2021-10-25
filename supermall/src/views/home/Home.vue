@@ -75,34 +75,6 @@ export default {
       return this.goods[this.currentType].list
     }
   },
-  destroyed() {
-    console.log('home destroyed');
-  },
-  activated() {
-    this.$refs.scroll.scrollTo(0, this.saveY, 0)
-    this.$refs.scroll.refresh()
-  },
-  deactivated() {
-    //保存Y值
-    this.saveY = this.$refs.scroll.getScrollY()
-    //取消全局事件的监听
-    this.$bus.$off('itemImageLoad', this.itemImgListener)
-  },
-  created() {
-    //1.请求多个数据
-    this.getHomeMultidata()
-    //2.请求商品数据
-    this.getHomeGoods('pop')
-    this.getHomeGoods('new')
-    this.getHomeGoods('sell')
-  },
-  mounted() {
-    // // 1.图片加载完成的事件监听
-    // const refresh = debounce(this.$refs.scroll.refresh, 50)
-    // this.$bus.$on('itemImageLoad', () => {
-    //   refresh()
-    // })
-  },
   methods: {
     //事件监听相关的方法
     tabClick(index) {
@@ -126,7 +98,7 @@ export default {
     contentScroll(position) {
       //1.判断BackTop是否显示
       this.isShowBackTop = (-position.y) > 1000
-    //  2.决定tabControl是否吸顶
+      //  2.决定tabControl是否吸顶
       this.isTabFixed = (-position.y) > this.tabOffsetTop
     },
     loadMore() {
@@ -147,11 +119,39 @@ export default {
       getHomeGoods(type, page).then(res => {
         this.goods[type].list.push(...res.data.list)
         this.goods[type].page += 1
-      //  完成上拉加载更多
+        //  完成上拉加载更多
         this.$refs.scroll.finishPullUp()
       })
     }
-  }
+  },
+  created() {
+    //1.请求多个数据
+    this.getHomeMultidata()
+    //2.请求商品数据
+    this.getHomeGoods('pop')
+    this.getHomeGoods('new')
+    this.getHomeGoods('sell')
+  },
+  mounted() {
+    // // 1.图片加载完成的事件监听
+    // const refresh = debounce(this.$refs.scroll.refresh, 50)
+    // this.$bus.$on('itemImageLoad', () => {
+    //   refresh()
+    // })
+  },
+  destroyed() {
+    console.log('home destroyed');
+  },
+  activated() {
+    this.$refs.scroll.scrollTo(0, this.saveY, 0)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    //保存Y值
+    this.saveY = this.$refs.scroll.getScrollY()
+    //取消全局事件的监听
+    this.$bus.$off('itemImageLoad', this.itemImgListener)
+  },
 }
 </script>
 

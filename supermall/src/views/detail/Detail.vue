@@ -82,17 +82,18 @@ export default {
       this.recommends = res.data.list
     })
   },
-  mounted() {
-  },
   destroyed() {
     // 离开页面时取消全局事件的监听
     this.$bus.$off('itemImageLoad',this.itemImgListener)
+  },
+  mounted() {
   },
   methods: {
     imageLoad() {
       this.$refs.scroll.refresh()
     }
-  }
+  },
+
 }
 </script>
 
