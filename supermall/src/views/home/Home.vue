@@ -86,7 +86,7 @@ export default {
     //保存Y值
     this.saveY = this.$refs.scroll.getScrollY()
     //取消全局事件的监听
-    this.$bus.$off('itemImgLoad', this.itemImgListener)
+    this.$bus.$off('itemImageLoad', this.itemImgListener)
   },
   created() {
     //1.请求多个数据
@@ -97,15 +97,14 @@ export default {
     this.getHomeGoods('sell')
   },
   mounted() {
-    // 1.图片加载完成的事件监听
-    const refresh = debounce(this.$refs.scroll.refresh, 50)
-    this.$bus.$on('itemImageLoad', () => {
-      refresh()
-    })
+    // // 1.图片加载完成的事件监听
+    // const refresh = debounce(this.$refs.scroll.refresh, 50)
+    // this.$bus.$on('itemImageLoad', () => {
+    //   refresh()
+    // })
   },
   methods: {
     //事件监听相关的方法
-
     tabClick(index) {
       switch (index) {
         case 0:

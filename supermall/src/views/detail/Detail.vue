@@ -53,7 +53,7 @@ export default {
       detailInfo: {},
       paramInfo: {},
       commentInfo:{},
-      recommends: []
+      recommends: [],
     }
   },
   created() {
@@ -82,13 +82,15 @@ export default {
       this.recommends = res.data.list
     })
   },
+  mounted() {
+  },
+  destroyed() {
+    // 离开页面时取消全局事件的监听
+    this.$bus.$off('itemImageLoad',this.itemImgListener)
+  },
   methods: {
     imageLoad() {
       this.$refs.scroll.refresh()
-    },
-    destroyed() {
-      // 离开页面时取消全局事件的监听
-      this.$bus.$off('itemImgLoad',this.itemImgListener)
     }
   }
 }

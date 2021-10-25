@@ -8,11 +8,11 @@ export const itemListenerMixin = {
   },
   mounted() {
     //防抖动debounce
-    let newRefresh = debounce(this.$refs.scroll.refresh, 100)
+    const refresh = debounce(this.$refs.scroll.refresh, 100)
     this.itemImgListener = () => {
-      newRefresh()
+      refresh()
     }
-    this.$bus.$on('itemImgLoad', this.itemImgListener)
+    this.$bus.$on('itemImageLoad', this.itemImgListener)
     console.log("hai");
   }
 }
